@@ -1,0 +1,29 @@
+server:
+  # \u901A\u8FC7\u542F\u52A8\u53C2\u6570--server.port=8083
+  servlet:
+    #    context-path: /api/v1
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jetty:
+    accesslog:
+      enabled: false
+    threads:
+      max: 100
+      min: 2
+      max-queue-capacity: 100
+      idle-timeout: 36000000
+  max-http-header-size: 200MB
+
+spring:
+  mvc:
+    pathmatch:
+      # \u914D\u7F6E\u7B56\u7565
+      matching-strategy: ANT_PATH_MATCHER
+
+async:
+  job:
+    threads:
+      num: 200
+
