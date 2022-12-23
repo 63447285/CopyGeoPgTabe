@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GPInstance InstanceID="b08df3ad-3202-4e90-afab-cff78bf90b98" Name="startup.sh" Version="1.0" BuildTime="2022/12/22 04:06:37">
+  <GeoHPCSystem>
+    <__ProcessScheme__>
+      <ServerIP>172.16.15.57</ServerIP>
+      <ClientIP>172.16.15.57</ClientIP>
+      <TaskName>829c37e6-486d-4170-b6f5-94f30317c5cd</TaskName>
+      <TaskItemID>e9d4ac7a-6651-4bc1-b407-aef116f4d972</TaskItemID>
+      <PluginName>startup.sh</PluginName>
+      <StartupParamXML>/geo/atlas_all/plugins/DemoRestPlugin1.0.0/DemoPlugin/ProgramStartUpXml/e9d4ac7a-6651-4bc1-b407-aef116f4d972.xml</StartupParamXML>
+    </__ProcessScheme__>
+  </GeoHPCSystem>
+  <Parameters>
+    <Param Name="serverPort">19870</Param>
+    <Param Name="zkUri">zookeeper://172.16.62.11:2181/atlas/plugin/DemoRestService-v1.0.0</Param>
+    <Param Name="Response">
+    </Param>
+    <Param Name="AtlasHost">172.16.15.57:7031</Param>
+    <Param Name="ESHost">172.16.62.11:9200</Param>
+  </Parameters>
+</GPInstance>
