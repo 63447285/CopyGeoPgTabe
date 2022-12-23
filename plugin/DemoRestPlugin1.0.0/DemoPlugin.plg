@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Plugin Id="3d10da6e-81c6-11ed-af1b-141877391a11" Name="DemoPlugin" Alias="DemoRestPlugin" Version="1.0.0" Type="WebService" IsInteractive="true">
+  <EntryPoint>zookeeper:/atlas/plugin/DemoRestService-v1.0.0</EntryPoint>
+  <Environment>
+    <HostOS Type="Linux" Version="7" CpuArch="x86">
+    </HostOS>
+    <Runtime>
+      <Java>8.0</Java>
+    </Runtime>
+    <ComputingFramework Type="GeoHPC" Version="2.1">
+    </ComputingFramework>
+  </Environment>
+  <Processes>
+    <Process Id="c3da20d2-81c6-11ed-b227-141877391a11" Name="startup.sh" Alias="startup">
+      <Parameter Name="serverPort" Alias="服务端口" Type="Int32" Direction="Input" DefaultValue="19870" Required="false" Description="服务端口">
+      </Parameter>
+      <Parameter Name="zkUri" Alias="zookeeper的URI" Type="String" Direction="Input" DefaultValue="zookeeper://172.16.67.89:2181/atlas/plugin/DemoRestService-v1.0.0" Required="true" Description="zookeeper的URI">
+      </Parameter>
+    </Process>
+    <Process Id="55da237e-81c7-11ed-8647-141877391a11" Name="/demo" Alias="模拟任务运行算子">
+      <Parameter Name="duration" Alias="持续时间(s)" Type="Int32" Direction="Input" DefaultValue="1" Required="false" Description="持续时间(s)">
+      </Parameter>
+    </Process>
+    <Process Id="68558776-81c9-11ed-800e-141877391a11" Name="/atlas/jobresult" Alias="异步任务查询">
+      <Parameter Name="jobid" Alias="任务号" Type="String" Direction="Input" DefaultValue="2" Description="任务号">
+      </Parameter>
+    </Process>
+    <Process Id="aeeea9d8-81c9-11ed-91dd-141877391a11" Name="/atlas/canceljob" Alias="异步任务取消">
+      <Parameter Name="jobid" Alias="任务号" Type="String" Direction="Input" DefaultValue="2" Description="任务号">
+      </Parameter>
+    </Process>
+  </Processes>
+  <MetaInfo>
+    <Item Name="ReleaseTime" Alias="发行日期">2022/12/22</Item>
+    <Item Name="Developer" Alias="开发商">Geoway</Item>
+    <Item Name="Copyright" Alias="版权所有">CopyRight© 1998-2023 北京吉威时代软件股份有限公司</Item>
+    <Item Name="Phone" Alias="联系电话">10010</Item>
+    <Item Name="Introduction" Alias="插件简介">服务型算子demo样例</Item>
+  </MetaInfo>
+</Plugin>
