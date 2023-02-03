@@ -59,7 +59,6 @@ public class ZkServerHandle implements ServerHandle {
                 this.curatorFramework.delete().forPath(this.zkRawPath);
                 log.info("删除已存在节点:" + this.zkRawPath);
             }
-
             this.curatorFramework
                     .create()
                     .creatingParentsIfNeeded()

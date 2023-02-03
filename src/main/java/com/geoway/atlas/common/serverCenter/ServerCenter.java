@@ -45,7 +45,7 @@ public class ServerCenter {
             String schema = centerUri.getScheme();
             switch (schema.toUpperCase()) {
                 case ZkServerHandle.NAME:
-                    serverHandle = new ZkServerHandle(centerUri.getAuthority(), centerUri.getPath());
+                    serverHandle = new ZkServerHandle(centerUri.getAuthority(), centerUri.getPath() + ":" + ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_PORT));
                     break;
                 default:
                     throw new RuntimeException("不支持指定的服务中心类型:" + schema);
@@ -82,10 +82,10 @@ public class ServerCenter {
             String port = ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_PORT);
             double cpu = Double.parseDouble(ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_CPU));
             double memory = Double.parseDouble(ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_MEMERYSIZE));
-            String scale = ApplicationArgumentsUtils.getSingleValue(args,AtlasRestfulApplication.SERVER_SCALE);
-            double totalpercentage = Double.parseDouble(ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_TOTALPERCENTAGE));
-            double uesdpercentage = Double.parseDouble(ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_USEDPERCENTAGE));
-            double usablepercentage = Double.parseDouble(ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_USABLEPERCENTAGE));
+            String scale = "";
+            double totalpercentage = 0;
+            double uesdpercentage = 0;
+            double usablepercentage = 0;
 
             WebService service=new WebService(serverAddress,port,cpu,scale,memory,totalpercentage,uesdpercentage,usablepercentage);
 

@@ -67,7 +67,7 @@ public class AtlasRestfulApplication {
 				throw new RuntimeException(e);
 			}
 
-			String[] nArgs = new String[8];
+			String[] nArgs = new String[4];
 			for(ArgParam argParam:argXml.getParameters().getArgParams()){
 				if(StringUtils.equals(argParam.getName(), "serverPort")){
 					nArgs[0] = "--server.port=" + argParam.getValue();
@@ -78,22 +78,23 @@ public class AtlasRestfulApplication {
 				if(StringUtils.equals(argParam.getName(), "serverCpu")){
 					nArgs[2] = "--server.cpu=" + argParam.getValue();
 				}
-				if(StringUtils.equals(argParam.getName(), "serverScale")){
-					nArgs[3] = "--server.scale=" + argParam.getValue();
-				}
-				if(StringUtils.equals(argParam.getName(), "serverMemorySize")){
-					nArgs[4] = "--server.memorySize=" + argParam.getValue();
-				}
-				if(StringUtils.equals(argParam.getName(), "serverTotalPercentage")){
-					nArgs[5] = "--server.totalPercentage=" + argParam.getValue();
-				}
-				if(StringUtils.equals(argParam.getName(), "serverUsedPercentage")){
-					nArgs[6] = "--server.usedPercentage=" + argParam.getValue();
-				}
-				if(StringUtils.equals(argParam.getName(), "serverUsablePercentage")){
-					nArgs[7] = "--server.usablePercentage=" + argParam.getValue();
-				}
 
+				if(StringUtils.equals(argParam.getName(), "serverMemorySize")){
+					nArgs[3] = "--server.memorySize=" + argParam.getValue();
+				}
+                //服务规模、资源占比不需要暴露给用户
+//				if(StringUtils.equals(argParam.getName(), "serverScale")){
+//					nArgs[3] = "--server.scale=" + argParam.getValue();
+//				}
+//				if(StringUtils.equals(argParam.getName(), "serverTotalPercentage")){
+//					nArgs[5] = "--server.totalPercentage=" + argParam.getValue();
+//				}
+//				if(StringUtils.equals(argParam.getName(), "serverUsedPercentage")){
+//					nArgs[6] = "--server.usedPercentage=" + argParam.getValue();
+//				}
+//				if(StringUtils.equals(argParam.getName(), "serverUsablePercentage")){
+//					nArgs[7] = "--server.usablePercentage=" + argParam.getValue();
+//				}
 			}
 			return ArrayUtils.addAll(nArgs, optionArgs);
 

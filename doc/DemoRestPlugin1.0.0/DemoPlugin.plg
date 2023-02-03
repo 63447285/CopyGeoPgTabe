@@ -18,15 +18,7 @@
       </Parameter>
       <Parameter Name="serverCpu" Alias="服务器cpu核数" Type="String" Direction="Input" DefaultValue="4.0">
       </Parameter>
-      <Parameter Name="serverScale" Alias="服务规模" Type="String" Direction="Input" DefaultValue="">
-      </Parameter>
       <Parameter Name="serverMemorySize" Alias="服务内存资源" Type="String" Direction="Input" DefaultValue="70">
-      </Parameter>
-      <Parameter Name="serverTotalPercentage" Alias="服务资源占比" Type="String" Direction="Input" DefaultValue="">
-      </Parameter>
-      <Parameter Name="serverUsedPercentage" Alias="服务已用资源" Type="String" Direction="Input" DefaultValue="">
-      </Parameter>
-      <Parameter Name="serverUsablePercentage" Alias="服务剩余资源" Type="String" Direction="Input" DefaultValue="">
       </Parameter>
     </Process>
     <Process Id="55da237e-81c7-11ed-8647-141877391a11" Name="/demo" Alias="模拟任务运行算子">

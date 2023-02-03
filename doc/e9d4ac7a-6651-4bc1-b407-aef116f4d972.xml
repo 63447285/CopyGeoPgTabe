@@ -14,12 +14,7 @@
     <Param Name="serverPort">8811</Param>
     <Param Name="zkUri">zookeeper://172.16.67.176:2181/atlas/plugins/DemoRestService-v1.1.0</Param>
     <Param Name="serverCpu">4.0</Param>
-    <Param Name="serverScale"> </Param>
     <Param Name="serverMemorySize">70</Param>
-    <Param Name="serverTotalPercentage">0</Param>
-    <Param Name="serverUsedPercentage">0</Param>
-    <Param Name="serverUsablePercentage">0</Param>
-
     <Param Name="Response">
     </Param>
     <Param Name="AtlasHost">172.16.67.167:8880</Param>
