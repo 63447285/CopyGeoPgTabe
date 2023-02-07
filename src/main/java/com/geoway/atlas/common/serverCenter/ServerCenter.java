@@ -45,7 +45,7 @@ public class ServerCenter {
             String schema = centerUri.getScheme();
             switch (schema.toUpperCase()) {
                 case ZkServerHandle.NAME:
-                    serverHandle = new ZkServerHandle(centerUri.getAuthority(), centerUri.getPath() + ":" + ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_PORT));
+                    serverHandle = new ZkServerHandle(centerUri.getAuthority(), centerUri.getPath() + ":" + ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.SERVER_PORT),ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.zk_User),ApplicationArgumentsUtils.getSingleValue(args, AtlasRestfulApplication.zk_Password));
                     break;
                 default:
                     throw new RuntimeException("不支持指定的服务中心类型:" + schema);

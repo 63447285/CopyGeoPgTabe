@@ -26,6 +26,10 @@ public class AtlasRestfulApplication {
 
 	public static final String SERVER_MEMERYSIZE = "server.memorySize";
 
+	public static final String zk_User = "zkUser";
+
+	public static final String zk_Password = "zkPassword";
+
 	public static final String SERVER_SCALE = "server.scale";
 
 	public static final String SERVER_TOTALPERCENTAGE = "server.totalPercentage";
@@ -67,7 +71,7 @@ public class AtlasRestfulApplication {
 				throw new RuntimeException(e);
 			}
 
-			String[] nArgs = new String[4];
+			String[] nArgs = new String[6];
 			for(ArgParam argParam:argXml.getParameters().getArgParams()){
 				if(StringUtils.equals(argParam.getName(), "serverPort")){
 					nArgs[0] = "--server.port=" + argParam.getValue();
@@ -81,6 +85,13 @@ public class AtlasRestfulApplication {
 
 				if(StringUtils.equals(argParam.getName(), "serverMemorySize")){
 					nArgs[3] = "--server.memorySize=" + argParam.getValue();
+				}
+				if(StringUtils.equals(argParam.getName(), "ZKUser")){
+					nArgs[4] = "--zkUser=" + argParam.getValue();
+				}
+
+				if(StringUtils.equals(argParam.getName(), "ZKPassword")){
+					nArgs[5] = "--zkPassword=" + argParam.getValue();
 				}
                 //服务规模、资源占比不需要暴露给用户
 //				if(StringUtils.equals(argParam.getName(), "serverScale")){

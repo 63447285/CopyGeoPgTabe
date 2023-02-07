@@ -10,11 +10,16 @@ import org.apache.curator.framework.recipes.cache.NodeCache;
 import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.retry.RetryForever;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.data.ACL;
+import org.apache.zookeeper.data.Id;
+import org.apache.zookeeper.server.auth.DigestAuthenticationProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * zookeeper做注册中心
@@ -36,11 +41,19 @@ public class ZkServerHandle implements ServerHandle {
 
     private NodeCache nodeCache;
 
-    public ZkServerHandle(String zkIp, String zookPath) {
+    private  String User;
+
+    private  String PassWord;
+
+    public ZkServerHandle(String zkIp, String zookPath ,String user, String PassWord) {
         RetryPolicy retryPolicy = new RetryForever(RETRY_INTERVAL_MS);
         this.zkRawPath = zookPath;
+        this.User = user;
+        this.PassWord = PassWord;
         this.curatorFramework =
                 CuratorFrameworkFactory.builder()
+                        //zk认证
+                        .authorization("digest",(user + ":" + PassWord).getBytes())
                         .connectString(zkIp)
                         .sessionTimeoutMs(SESSION_TIMEOUT)
                         .connectionTimeoutMs(SESSION_TIMEOUT)
@@ -59,11 +72,17 @@ public class ZkServerHandle implements ServerHandle {
                 this.curatorFramework.delete().forPath(this.zkRawPath);
                 log.info("删除已存在节点:" + this.zkRawPath);
             }
+            List<ACL> acls = new ArrayList<ACL>();
+            Id zkid = new Id("digest", DigestAuthenticationProvider.generateDigest(User+":"+PassWord));
+            ACL zkacl = new ACL(ZooDefs.Perms.ALL,zkid);
+            acls.add(zkacl);
             this.curatorFramework
                     .create()
                     .creatingParentsIfNeeded()
                     .withMode(CreateMode.EPHEMERAL)
+                    .withACL(acls,false)
                     .forPath(this.zkRawPath, registerInfoBytes);
+
             log.info("服务注册成功:" + this.zkRawPath);
         } catch (Exception e) {
             log.error(ExceptionUtils.getStackTrace(e));
@@ -77,7 +96,6 @@ public class ZkServerHandle implements ServerHandle {
      * @param registerInfo
      */
     public void monitor(String registerInfo) {
-
         nodeCache = new NodeCache(this.curatorFramework, this.zkRawPath);
         addListener(nodeCache, registerInfo);
         try {

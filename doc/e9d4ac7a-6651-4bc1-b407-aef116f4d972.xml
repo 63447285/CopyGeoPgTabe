@@ -19,5 +19,7 @@
     </Param>
     <Param Name="AtlasHost">172.16.67.167:8880</Param>
     <Param Name="ESHost">172.16.67.167:9200</Param>
+    <Param Name="ZKUser">zk_admin</Param>
+    <Param Name="ZKPassword">root</Param>
   </Parameters>
 </GPInstance>
