@@ -45,9 +45,9 @@ public class ZkServerHandle implements ServerHandle {
 
     private  String PassWord;
 
-    public ZkServerHandle(String zkIp, String zookPath ,String user, String PassWord) {
+    public ZkServerHandle(String zkIp, String zkPath ,String user, String PassWord) {
         RetryPolicy retryPolicy = new RetryForever(RETRY_INTERVAL_MS);
-        this.zkRawPath = zookPath;
+        this.zkRawPath = zkPath;
         this.User = user;
         this.PassWord = PassWord;
         this.curatorFramework =
